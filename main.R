@@ -6,6 +6,8 @@ library(lubridate)
 library(tidyverse)
 library(magrittr)
 library(feasts)
+#devtools::install_github("thiyangt/ceylon")
+library(ceylon)
 
 ## ---- tsibbletalk
 data(srilanka_weekly_data)
@@ -48,12 +50,27 @@ p2 <- dengue_feat %>%
   geom_point(aes(group = district)) + 
   xlab("Strength of trend") + ylab("Strength of seasonality")
 
+p3 <- dh_shared %>%
+  ggplot(aes(x = week, y = cases)) +
+  geom_point(aes(group = district),
+            alpha = 0.5) + 
+  xlab("Week") + ylab("Cases") 
+
+p4 <- dh_shared %>%
+  ggplot(aes(x = year, y = cases)) +
+  geom_point(aes(group = district),
+             alpha = 0.5) + 
+  xlab("Year") + ylab("Cases") 
 
 library(plotly)
-subplot(p0,
+subplot(p0, 
         subplot(
-          ggplotly(p1, tooltip = "District", width = 900),
-          ggplotly(p2, tooltip = "District", width = 900),
-          nrows = 2),
-        widths = c(.4, .6)) %>%
+          ggplotly(p1, tooltip = "District", width = 2000),
+          ggplotly(p2, tooltip = "District", width = 2000),
+          ggplotly(p3, tooltip = "District", width = 1500),
+          ggplotly(p4, tooltip = "District", width = 1500),
+          nrows = 2)
+        ) %>%
   highlight(dynamic = TRUE)
+
+

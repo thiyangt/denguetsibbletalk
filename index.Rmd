@@ -27,13 +27,13 @@ library(feasts)
 knitr::read_chunk("main.R")
 ```
 
-Column {data-width=1000 .tabset}
+Column 
 -----------------------------------------------------------------------
 
 ```{r packages}
 
 ```
 
-```{r tsibbletalk}
+```{r tsibbletalk, out.width="100%"}
 
 ```
