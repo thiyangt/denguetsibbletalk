@@ -48,18 +48,12 @@ p2 <- dengue_feat %>%
   geom_point(aes(group = district)) + 
   xlab("Strength of trend") + ylab("Strength of seasonality")
 
-p3 <- dh_shared %>%
-  ggplot(aes(x = year, y = cases)) +
-  geom_point()
-
-
 
 library(plotly)
 subplot(p0,
         subplot(
-          ggplotly(p1, tooltip = "Region", width = 900),
-          ggplotly(p2, tooltip = "Region", width = 900),
-          ggplotly(p3, tooltip = "Region", width = 900),
-          nrows = 3),
+          ggplotly(p1, tooltip = "District", width = 900),
+          ggplotly(p2, tooltip = "District", width = 900),
+          nrows = 2),
         widths = c(.4, .6)) %>%
   highlight(dynamic = TRUE)

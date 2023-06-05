@@ -30,6 +30,10 @@ knitr::read_chunk("main.R")
 Column {data-width=1000 .tabset}
 -----------------------------------------------------------------------
 
+```{r packages}
+
+```
+
 ```{r tsibbletalk}
 
 ```
