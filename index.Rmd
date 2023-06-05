@@ -1,0 +1,35 @@
+---
+title: "Dengue Dynamic in Sri Lanka"
+output: 
+  flexdashboard::flex_dashboard:
+    theme:
+      bg: "#FFFFFF"
+      fg: "#0d0f0f" 
+      primary: "#79ccf9"
+      base_font:
+        google: Prompt
+      code_font:
+        google: JetBrains Mono
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+# Install thematic and un-comment for themed static plots (i.e., ggplot2)
+# thematic::thematic_rmd()
+library(denguedatahub)
+library(tsibbletalk)
+library(tsibble)
+library(lubridate)
+library(tidyverse)
+library(feasts)
+read_chunk("main.R")
+```
+
+Column {data-width=650 .tabset}
+-----------------------------------------------------------------------
+
+```{r tsibbletalk}
+
+```
