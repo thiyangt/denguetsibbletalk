@@ -24,10 +24,10 @@ library(tsibble)
 library(lubridate)
 library(tidyverse)
 library(feasts)
-read_chunk("main.R")
+knitr::read_chunk("main.R")
 ```
 
-Column {data-width=650 .tabset}
+Column {data-width=1000 .tabset}
 -----------------------------------------------------------------------
 
 ```{r tsibbletalk}

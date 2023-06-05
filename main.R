@@ -33,23 +33,33 @@ srilanka_weekly_data_tsibble <- srilanka_weekly_data %>%
 dh_shared <- srilanka_weekly_data_tsibble %>%
   as_shared_tsibble(spec = (Province/district))
 
-p0 <- plotly_key_tree(dh_shared, height = 700, width = 600)
+p0 <- plotly_key_tree(dh_shared, height = 800, width = 1000)
 
 p1 <- dh_shared %>%
   ggplot(aes(x = start.date, y = cases)) +
-  geom_line(aes(group = district,col=district), alpha = 0.5,)
+  geom_line(aes(group = district),
+            alpha = 0.5) + 
+  xlab("Time") + ylab("Cases") 
 
 dengue_feat <- dh_shared %>%
   features(cases, feat_stl)
 p2 <- dengue_feat %>%
   ggplot(aes(x = trend_strength, y = seasonal_strength_year)) +
-  geom_point(aes(group = district))
+  geom_point(aes(group = district)) + 
+  xlab("Strength of trend") + ylab("Strength of seasonality")
+
+p3 <- dh_shared %>%
+  ggplot(aes(x = year, y = cases)) +
+  geom_point()
+
+
 
 library(plotly)
 subplot(p0,
         subplot(
           ggplotly(p1, tooltip = "Region", width = 900),
           ggplotly(p2, tooltip = "Region", width = 900),
-          nrows = 2),
+          ggplotly(p3, tooltip = "Region", width = 900),
+          nrows = 3),
         widths = c(.4, .6)) %>%
   highlight(dynamic = TRUE)
